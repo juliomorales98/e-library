@@ -1,2 +1,3 @@
 # e-library
-Your e-books in all your home devices
+This is a project to have a site where you can access, upload and share e-books across your home network.
+
