@@ -17,8 +17,9 @@
                 $fileList = glob('uploads/*');
                 foreach($fileList as $fileName){
                     if(is_file($fileName)){
-                        $cleanName = '"'.str_replace("uploads/","",$fileName).'"';
-                        echo "<div class='fileItem' onclick='ShowManagePanel($cleanName);'> " ;
+                        $cleanName = str_replace("uploads/","",$fileName);
+                        $nameQuotes = '"'.$cleanName.'"';
+                        echo "<div class='fileItem' onclick='ShowManagePanel($nameQuotes);'> " ;
                         echo "<label>$cleanName</label>";
                         echo "</div>";
                     }
@@ -29,7 +30,7 @@
         <div id="addPopup" class="addPopup">
             <form method="post" id="documentUploadForm" enctype="multipart/form-data">
                 <h2>Add pdf</h2>
-                <input type="file" id="file" name="file">
+                <input type="file" id="file" name="file" multiple accept="application/pdf">
                 <input id="isShared" type="checkbox"><label for="isShared">Share this file</label>
                 <input type="submit" value="Upload">
             </form>

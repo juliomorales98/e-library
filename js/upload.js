@@ -4,10 +4,13 @@ const form = document.getElementById("documentUploadForm")
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
     
-    const file = document.querySelector('[type=file]').files
+    const files = document.querySelector('[type=file]').files
     const formData = new FormData()
 
-   formData.append('files[]',file[0])
+    for( let i = 0; i < files.length; i++){
+        let file = files[i]
+        formData.append('files[]',file)
+    }
 
     fetch(url,{
         method:'POST',
