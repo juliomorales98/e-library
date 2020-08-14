@@ -10,8 +10,12 @@ function ShowAddForm(){
 }
 
 function ShowManagePanel(fileTitle){
-    console.log(String(fileTitle));
     panel = document.getElementById("managePanel");
     panel.style.display = "block";
     title = document.getElementById("managePanelTitle");
+    title.innerHTML = fileTitle;
+    document.getElementById("fileHidden").value=fileTitle; 
+    document.getElementById("openButton").onclick = function(){
+        window.open('uploads/'+fileTitle,'_blank');
+    }
 }

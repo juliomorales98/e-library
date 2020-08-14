@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             move_uploaded_file($file_tmp,$file); 
         }else{
            print_r($errors); 
+           return $errors;
         }
         
     }

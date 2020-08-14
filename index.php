@@ -18,16 +18,16 @@
                 foreach($fileList as $fileName){
                     if(is_file($fileName)){
                         $cleanName = '"'.str_replace("uploads/","",$fileName).'"';
-                        echo '<div class="fileItem" onclick="ShowManagePanel('.$cleanName,');"> ' ;
-                        echo '<label>',$cleanName,'</label>';
-                        echo '</div>';
+                        echo "<div class='fileItem' onclick='ShowManagePanel($cleanName);'> " ;
+                        echo "<label>$cleanName</label>";
+                        echo "</div>";
                     }
                 }
             ?>
         </div>
         <div id="addButton"><button type="button" onclick="ShowAddForm();">+</button></div>
         <div id="addPopup" class="addPopup">
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" id="documentUploadForm" enctype="multipart/form-data">
                 <h2>Add pdf</h2>
                 <input type="file" id="file" name="file">
                 <input id="isShared" type="checkbox"><label for="isShared">Share this file</label>
@@ -37,7 +37,10 @@
         <div id="managePanel" class="managePanel">
             <h4>Manage file</h4>
             <h5 id="managePanelTitle"></h5>
-            <input type="button" value="Open">
+            <form method="get" action="view.php/">
+            <input type="hidden" name="fileGet" id="fileHidden" >
+            <input type="button" id="openButton" value="Open">
+            </form>
             <input type="button" value="Share">
             <input type="button" value="Download">
             <input type="button" value="Delete">

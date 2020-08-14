@@ -1,5 +1,5 @@
 const url = 'process.php'
-const form = document.querySelector('form')
+const form = document.getElementById("documentUploadForm")
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
