@@ -12,7 +12,7 @@
     </head>
     <body>
         <h1 id="title">My library</h1><input type="button" id="selectedFolder" value="Shared Folder">
-        <div id="filesContainer">
+        <div id="filesContainer" class="filesContainer">
             <?php
                 $fileList = glob('uploads/*');
                 foreach($fileList as $fileName){
@@ -21,12 +21,13 @@
                         $nameQuotes = '"'.$cleanName.'"';
                         echo "<div class='fileItem' onclick='ShowManagePanel($nameQuotes);'> " ;
                         echo "<label>$cleanName</label>";
+                        echo "<img src='resources/icons/pdf.png'/>";
                         echo "</div>";
                     }
                 }
             ?>
         </div>
-        <div id="addButton"><button type="button" onclick="ShowAddForm();">+</button></div>
+        <div id="addButton" class="addButton"><button type="button" onclick="ShowAddForm();">+</button></div>
         <div id="addPopup" class="addPopup">
             <form method="post" id="documentUploadForm" enctype="multipart/form-data">
                 <h2>Add pdf</h2>
