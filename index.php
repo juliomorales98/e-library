@@ -21,7 +21,6 @@
                         $nameQuotes = '"'.$cleanName.'"';
                         echo "<div class='fileItem' onclick='ShowManagePanel($nameQuotes);'> " ;
                         echo "<label>$cleanName</label>";
-                        echo "<img src='resources/icons/pdf.png'/>";
                         echo "</div>";
                     }
                 }
@@ -38,13 +37,13 @@
         </div>
         <div id="managePanel" class="managePanel">
             <h4>Manage file</h4>
-            <h5 id="managePanelTitle"></h5>
-            <form method="get" action="view.php/">
+            <h5 id="managePanelTitle" class="managePanelTitle"></h5>
+            <form method="get" action="view.php/" target="_blank">
             <input type="hidden" name="fileGet" id="fileHidden" >
-            <input type="button" id="openButton" value="Open">
+            <input type="submit" id="openButton" value="Open">
             </form>
             <input type="button" value="Share">
-            <input type="button" value="Download">
+            <a id="downloadButton" href="#" download><input type="button" value="Download" ></a>
             <input type="button" value="Delete">
         </div>
         <script src="./js/upload.js"></script>

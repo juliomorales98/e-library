@@ -1,3 +1,7 @@
+a{
+    text-decoration: none;
+    color: inherit;
+}
 .addPopup, .managePanel{
     display:none;
 }
@@ -16,6 +20,10 @@
     cursor: pointer;  
     transition-duration:0.5s;  
     box-shadow: 0px 0px 10px rgba(47, 47, 47, 0.3);
+    background-image: url("/resources/icons/pdf.png");
+    background-repeat: no-repeat;
+    background-size: 5.5em 4em;
+    background-position: bottom;
 }
 .fileItemActive{
     border: 2px solid rgba(0, 38, 255, 0.8);
@@ -26,13 +34,14 @@
     transition-duration: 0.5s;
 }
 .fileItem label{    
-    height: fit-content;
+    height: 100%;
     cursor: pointer;
     display: block;
     overflow: hidden;
     width: 100%;
     justify-content: center;
     text-align: center;
+    overflow-wrap: break-word;
 }
 .fileItem img{
     display: block;
@@ -85,7 +94,7 @@
 .managePanel form{
     margin: 0;
 }
-.managePanel input[type=button]{
+.managePanel input[type]{
     display: block;
     width: 80%;
     margin: 0.3em auto;
@@ -94,4 +103,9 @@
     border-radius: 4px;
     background-color: white;
     box-shadow: 0px 0px 5px rgba(47, 47, 47, 0.5);
+}
+
+.managePanelTitle{
+    overflow-wrap: break-word;
+    height: 4em;
 }

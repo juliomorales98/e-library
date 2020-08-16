@@ -15,7 +15,9 @@ function ShowManagePanel(fileTitle){
     title = document.getElementById("managePanelTitle");
     title.innerHTML = fileTitle;
     document.getElementById("fileHidden").value=fileTitle; 
-    document.getElementById("openButton").onclick = function(){
-        window.open('uploads/'+fileTitle,'_blank');
-    }
+    //document.getElementById("openButton").onclick = function(){
+    //    window.open('uploads/'+fileTitle,'_blank');
+   //// }
+    downloadB = document.getElementById("downloadButton");
+    downloadB.href = "/uploads/" + fileTitle;
 }
