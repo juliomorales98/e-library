@@ -1,6 +1,5 @@
-const url = 'process.php'
-const form = document.getElementById("documentUploadForm")
-
+//const form = document.getElementById("documentUploadForm")
+/*
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
     
@@ -19,3 +18,4 @@ form.addEventListener('submit', (e)=>{
         location.reload()
     })
 })
+*/

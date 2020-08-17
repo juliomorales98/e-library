@@ -1,5 +1,17 @@
+const url = 'process.php';
 document.getElementById("addPopup").style.display = "none";
 document.getElementById("managePanel").style.display = "none";
+$(document).ready(function(){
+    $("#file").on('change',function(){
+        var label = document.getElementById("filesToUpload");
+        var filesInput = document.getElementById("file");
+        if(filesInput.files.length > 1){
+            label.innerHTML = filesInput.files.length + " files selected";
+        }else{
+            label.innerHTML = filesInput.value.replace('C:\\fakepath\\','');
+        }
+    });
+});
 function ShowAddForm(){
     addForm = document.getElementById("addPopup");
     if (addForm.style.display == "none"){
@@ -21,3 +33,22 @@ function ShowManagePanel(fileTitle){
     downloadB = document.getElementById("downloadButton");
     downloadB.href = "/uploads/" + fileTitle;
 }
+function Submit(){
+    const files = document.querySelector('[type=file]').files
+    const formData = new FormData()
+
+    for( let i = 0; i < files.length; i++){
+        let file = files[i]
+        formData.append('files[]',file)
+    }
+
+    fetch(url,{
+        method:'POST',
+        body:formData,
+    }).then((response)=>{
+        location.reload()
+    })
+
+    //document.getElementById("uploadForm").submit();
+}
+

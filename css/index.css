@@ -68,8 +68,7 @@ a{
     top: 85%;
 }
 .addButton button{
-    background-color: blue;
-    border-radius: 50%;
+    
     color: white;
     width: 2.5em;
     height: 2.5em;
@@ -80,6 +79,8 @@ a{
     border: none;
     user-select: none;
     box-shadow: 0px 0px 10px rgba(47, 47, 47, 1);
+    background-color: blue;
+    border-radius: 50%;
 }
 
 .managePanel{
@@ -108,4 +109,96 @@ a{
 .managePanelTitle{
     overflow-wrap: break-word;
     height: 4em;
+}
+
+/*=============================================popup===================================*/
+.addPopup{
+    position: absolute;  
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.addPopup .closeButton{
+    display: flex;
+    position: absolute;
+    color: white;
+    font-size:2em;
+    cursor:pointer;
+    right: 1em;
+}
+.addPopup form{
+    position: absolute;
+    width: 30em;
+    height: fit-content;
+    padding: 1em;
+    top: 30%;
+    left: 30%;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px rgba(47, 47, 47, 0.5);
+    background-color: white; 
+}
+.addPopup form input[type]{
+    margin-bottom: 1em;
+}
+.addPopup form input[type=file],
+.addPopup form input[type=submit]{
+    display: block;
+}
+.addPopup form i{
+    display: block;
+    color: white;
+    font-size: 1.5em;
+    box-shadow: 0px 0px 10px rgba(47, 47, 47, 1);
+    border-radius: 4px;
+    background-color: blue;
+    padding: 0.5em;
+    height: fit-content;
+    margin: 0 auto;
+    width: fit-content;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+.addPopup form i:hover{
+    box-shadow: 0px 0px 10px rgb(47, 47, 0);
+    font-size: 1.8em;
+    transition-duration: 0.5s;
+}
+.addPopup .layout{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.addPopup .layout form input[type=file]{   
+    display: none;
+}
+.addLabel{
+    display: inline-block;
+    width: 90%;
+    padding: 12px 18px;
+    cursor: pointer;
+    border: 2px solid blue;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    transition-duration: 0.8s;
+}
+.addLabel:hover{
+    border: 2px solid white;
+    background-color: blue;
+    color: white;
+    transition-duration: 0.8s;
+}
+
+.filesToUpload{
+    width: 100%;
+    text-align: center;
+    color: gray;
+    font-size: 1.3em;
+    display: block;
+
 }
