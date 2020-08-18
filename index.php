@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location:login.php");
+    exit;
+}
 ?>
 <html>
     <head>
@@ -13,7 +18,7 @@
         <title>E-library</title>
     </head>
     <body>
-        <h1 id="title">My library</h1><input type="button" id="selectedFolder" value="Shared Folder">
+        <h1 id="title">My library (<?php echo $_SESSION["username"]; ?>)</h1><input type="button" id="selectedFolder" value="Shared Folder">
         <div id="filesContainer" class="filesContainer">
             <?php
                 $fileList = glob('uploads/*');
