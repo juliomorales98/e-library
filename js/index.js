@@ -1,6 +1,7 @@
 const url = 'process.php';
 document.getElementById("addPopup").style.display = "none";
 document.getElementById("managePanel").style.display = "none";
+document.getElementById("sharedFilesContainer").style.display = "none"; 
 $(document).ready(function(){
     $("#file").on('change',function(){
         var label = document.getElementById("filesToUpload");
@@ -41,7 +42,6 @@ function Submit(){
         let file = files[i]
         formData.append('files[]',file)
     }
-
     fetch(url,{
         method:'POST',
         body:formData,
@@ -52,3 +52,19 @@ function Submit(){
     //document.getElementById("uploadForm").submit();
 }
 
+function SwitchFolder(username){
+    var userContainer = document.getElementById("userFilesContainer");
+    var sharedContainer = document.getElementById("sharedFilesContainer"); 
+    var button = document.getElementById("selectedFolder");
+    if(userContainer.style.display != "none"){
+        userContainer.style.display = "none";
+        sharedContainer.style.display = "block";
+        document.getElementById("title").innerHTML = "Shared folder";
+        button.value = "My library";
+    }else{
+        userContainer.style.display = "block";
+        sharedContainer.style.display = "none";
+        document.getElementById("title").innerHTML = "My library ("+username+")";
+        button.value = "Shared Folder";
+    }
+}

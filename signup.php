@@ -1,4 +1,9 @@
 <?php
+session_start();
+if($_SESSION["loggedin"] === true){
+    header("location:index.php");
+    exit;
+}
 // Include config file
 require_once "config.php";
  
@@ -93,15 +98,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html>
     <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="css/userForm.css">
     </head>
     <body>
+    <div class="wrapper">
+        <h3>Sign up</h3>
         <form method="POST">
-            <h3>Sign up</h3>
-            <input type="text" name="username" id="username" placeholder="Username...">
-            <input type="password" name="password" id="password" placeholder="Password...">
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password...">
-            <input type="submit" value="Signup">
+            <div class="form-group">
+                <input type="text" name="username" id="username" placeholder="Username..." class="form-control">
+                <input type="password" name="password" id="password" placeholder="Password..." class="form-control">
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password..." class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Signup" class="btn btn-primary">
+            </div>
+            <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
+    </div>
     </body>
 </html>
             

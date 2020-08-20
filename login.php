@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["LOGGEDIN"]) && $_SESSION["loggedin"] === true){
+if($_SESSION["loggedin"] === true){
     header("location:index.php");
     exit;
 }
@@ -46,13 +46,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 <html>
     <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="css/userForm.css">
     </head>
     <body>
-        <form method="post">
-            <input type="text" name="username" id="username" placeholder="Username...">
-            <input type="password" name="password" id="password" placeholder="password...">
-            <input type="submit" value="Login">
-        </form>
+        <div class="wrapper">
+            <h3>Log in</h3>
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" name="username" id="username" placeholder="Username..." class="form-control">
+                    <input type="password" name="password" id="password" placeholder="Password..." class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary">
+                </div>
+                <p>Don't have an account? <a href="signup.php">Sign up now</a>.</p>
+            </form>
+        </div>
     </body>
 </html>
         

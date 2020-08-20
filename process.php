@@ -1,9 +1,10 @@
 <?php
-
+session_start();
+require "config.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     if (isset($_FILES['files'])){
         $errors = [];
-        $path = 'uploads/';
+        $path = 'uploads/'.$_SESSION['username'].'/';
         $extensions = ['pdf'];
         
         $all_files = count($_FILES['files']['name']);
@@ -21,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             }
 
             if (empty($errors)){
+                if(!file_exists($path)){
+                    mkdir($path,0777,true);
+                }
                 move_uploaded_file($file_tmp,$file); 
             }else{
                print_r($errors); 

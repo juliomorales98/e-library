@@ -18,13 +18,30 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <title>E-library</title>
     </head>
     <body>
-        <h1 id="title">My library (<?php echo $_SESSION["username"]; ?>)</h1><input type="button" id="selectedFolder" value="Shared Folder">
-        <div id="filesContainer" class="filesContainer">
+<div>
+        <h1 id="title">My library (<?php echo $_SESSION["username"]; ?>)</h1><input type="button" id="selectedFolder" onclick="SwitchFolder('<?php echo $_SESSION["username"]; ?>');" value="Shared Folder">
+</div>
+        <a href="logout.php">Logout</a>
+        <div id="userFilesContainer" class="filesContainer">
             <?php
-                $fileList = glob('uploads/*');
+                $fileList = glob('uploads/'.$_SESSION['username'].'/*');
                 foreach($fileList as $fileName){
                     if(is_file($fileName)){
-                        $cleanName = str_replace("uploads/","",$fileName);
+                        $cleanName = str_replace("uploads/".$_SESSION['username'].'/',"",$fileName);
+                        $nameQuotes = '"'.$cleanName.'"';
+                        echo "<div class='fileItem' onclick='ShowManagePanel($nameQuotes);'> " ;
+                        echo "<label>$cleanName</label>";
+                        echo "</div>";
+                    }
+                }
+            ?>
+        </div>
+        <div id="sharedFilesContainer" class="filesContainer">
+            <?php
+                $fileList = glob('uploads/shared/*');
+                foreach($fileList as $fileName){
+                    if(is_file($fileName)){
+                        $cleanName = str_replace("uploads/shared/","",$fileName);
                         $nameQuotes = '"'.$cleanName.'"';
                         echo "<div class='fileItem' onclick='ShowManagePanel($nameQuotes);'> " ;
                         echo "<label>$cleanName</label>";
