@@ -37,16 +37,19 @@ function ShowManagePanel(fileTitle){
 function Submit(){
     const files = document.querySelector('[type=file]').files
     const formData = new FormData()
-
+    
+    formData.append('value',document.getElementById('isShared').checked);
     for( let i = 0; i < files.length; i++){
         let file = files[i]
         formData.append('files[]',file)
     }
+    console.log(formData);
     fetch(url,{
         method:'POST',
         body:formData,
     }).then((response)=>{
         location.reload()
+        console.log(response);
     })
 
     //document.getElementById("uploadForm").submit();
