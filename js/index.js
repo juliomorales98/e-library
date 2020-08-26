@@ -22,17 +22,18 @@ function ShowAddForm(){
     }
 }
 
-function ShowManagePanel(fileTitle){
+function ShowManagePanel(fileTitle,owner){
     panel = document.getElementById("managePanel");
     panel.style.display = "block";
     title = document.getElementById("managePanelTitle");
     title.innerHTML = fileTitle;
     document.getElementById("fileHidden").value=fileTitle; 
+    document.getElementById("ownerHidden").value=owner; 
     //document.getElementById("openButton").onclick = function(){
     //    window.open('uploads/'+fileTitle,'_blank');
    //// }
     downloadB = document.getElementById("downloadButton");
-    downloadB.href = "/uploads/" + fileTitle;
+    downloadB.href = "/uploads/" + owner + "/" + fileTitle;
 }
 function Submit(){
     const files = document.querySelector('[type=file]').files

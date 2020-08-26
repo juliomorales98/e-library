@@ -105,15 +105,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="wrapper">
         <h3>Sign up</h3>
         <form method="POST">
-            <div class="form-group">
-                <input type="text" name="username" id="username" placeholder="Username..." class="form-control">
-                <input type="password" name="password" id="password" placeholder="Password..." class="form-control">
-                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password..." class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Signup" class="btn btn-primary">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+        <div class="form-group">
+            <input type="text" name="username" id="username" placeholder="Username..." class="form-control">
+            <input type="password" name="password" id="password" placeholder="Password..." class="form-control">
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password..." class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Signup" class="btn btn-primary">
+        </div>
+        <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
     </div>
     </body>

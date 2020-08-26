@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "config.php";
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location:login.php");
     exit;
@@ -24,6 +25,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a href="logout.php">Logout</a>
         <div id="userFilesContainer" class="filesContainer">
             <?php
+                /*
                 $fileList = glob('uploads/'.$_SESSION['username'].'/*');
                 foreach($fileList as $fileName){
                     if(is_file($fileName)){
@@ -34,10 +36,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         echo "</div>";
                     }
                 }
+                 */
+                $sql = "SELECT name,owner FROM books WHERE owner = ?";
+                $stmt = mysqli_prepare($link,$sql);
+                mysqli_stmt_bind_param($stmt,"s",$param_owner);
+                $param_owner = $_SESSION['username']; 
+                mysqli_stmt_execute($stmt); 
+                mysqli_stmt_bind_result($stmt,$name,$owner);
+                    while(mysqli_stmt_fetch($stmt)){
+                     $fileName = $name;
+                     $fileNameQuotes = '"'.$fileName.'"';
+                     $owner = '"'.$owner.'"';
+                     echo "<div class='fileItem' onclick='ShowManagePanel($fileNameQuotes,$owner);'> " ;
+                     echo "<label>$fileName</label>";
+                     echo "</div>";
+                    }
             ?>
         </div>
         <div id="sharedFilesContainer" class="filesContainer">
             <?php
+                /*
                 $fileList = glob('uploads/shared/*');
                 foreach($fileList as $fileName){
                     if(is_file($fileName)){
@@ -47,7 +65,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         echo "<label>$cleanName</label>";
                         echo "</div>";
                     }
-                }
+                }*/
+                $sql = "SELECT name,owner FROM books WHERE shared = ?";
+                $stmt = mysqli_prepare($link,$sql);
+                mysqli_stmt_bind_param($stmt,"i",$param_share);
+                $param_share = 1; 
+                mysqli_stmt_execute($stmt); 
+                mysqli_stmt_bind_result($stmt,$name,$owner);
+                    while(mysqli_stmt_fetch($stmt)){
+                     $fileName = $name;
+                     $fileNameQuotes = '"'.$fileName.'"';
+                     $owner = '"'.$owner.'"';
+                     echo "<div class='fileItem' onclick='ShowManagePanel($fileNameQuotes,$owner);'> " ;
+                     echo "<label>$fileName</label>";
+                     echo "</div>";
+                    }
             ?>
         </div>
         <div id="addButton" class="addButton"><button type="button" onclick="ShowAddForm();">+</button></div>
@@ -55,7 +87,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="layout">
                 <i onclick="ShowAddForm();" class="fas fa-times closeButton"></i>
                 <form method="post" id="uploadForm" enctype="multipart/form-data">
-                    <h2>Add pdf(s)</h2>
+                <h2>Add pdf(s) </h2>
+                <div class="details">(Max <?php echo ini_get('max_file_uploads');?> files, <?php echo ini_get('post_max_size');?> MB)</div>
                     <label class="addLabel" for="file">Select File(s)</label><input type="file" id="file" name="file" multiple accept="application/pdf">
                     <label class="filesToUpload" id="filesToUpload"></label>
                     <input id="isShared" type="checkbox"><label for="isShared">Share this file</label>
@@ -69,6 +102,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <h5 id="managePanelTitle" class="managePanelTitle"></h5>
             <form method="get" action="view.php/" target="_blank">
                 <input type="hidden" name="fileGet" id="fileHidden" >
+                <input type="hidden" name="ownerGet" id="ownerHidden" >
                 <input type="submit" id="openButton" value="Open">
             </form>
             <input type="button" value="Share">
