@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require "config.php";
+    require "php/config.php";
     if($_SERVER['REQUEST_METHOD'] === 'GET')
         $document = $_GET["fileGet"]; 
         $owner = $_GET["ownerGet"];

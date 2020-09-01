@@ -5,7 +5,7 @@ if($_SESSION["loggedin"] === true){
     exit;
 }
 // Include config file
-require_once "config.php";
+require_once "php/config.php";
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";

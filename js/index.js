@@ -1,4 +1,3 @@
-const url = 'process.php';
 document.getElementById("addPopup").style.display = "none";
 document.getElementById("managePanel").style.display = "none";
 document.getElementById("sharedFilesContainer").style.display = "none"; 
@@ -28,7 +27,9 @@ function ShowManagePanel(fileTitle,owner){
     title = document.getElementById("managePanelTitle");
     title.innerHTML = fileTitle;
     document.getElementById("fileHidden").value=fileTitle; 
+    document.getElementById("fileNameHidden").value=fileTitle; 
     document.getElementById("ownerHidden").value=owner; 
+    document.getElementById("fileOwnerHidden").value=owner; 
     //document.getElementById("openButton").onclick = function(){
     //    window.open('uploads/'+fileTitle,'_blank');
    //// }
@@ -37,7 +38,7 @@ function ShowManagePanel(fileTitle,owner){
 }
 function Submit(){
     const files = document.querySelector('[type=file]').files
-    const formData = new FormData()
+    var formData = new FormData()
     
     formData.append('value',document.getElementById('isShared').checked);
     for( let i = 0; i < files.length; i++){
@@ -45,7 +46,7 @@ function Submit(){
         formData.append('files[]',file)
     }
     console.log(formData);
-    fetch(url,{
+    fetch('php/upload.php',{
         method:'POST',
         body:formData,
     }).then((response)=>{
@@ -55,7 +56,22 @@ function Submit(){
 
     //document.getElementById("uploadForm").submit();
 }
-
+function DeleteFile(){
+    let fileName = document.getElementById("fileNameHidden").value.toString();
+    let fileOwner = document.getElementById("fileOwnerHidden").value.toString();
+    if(confirm("Delete " + fileName + "?")){
+        let formData = new FormData();
+        formData.append('filename',fileName);
+        formData.append('owner',fileOwner);
+        fetch('../php/delete.php',{
+            method: 'POST',
+            body: formData,
+        }).then((response)=>{
+            console.log(response);
+            location.reload();
+        }); 
+    }
+}
 function SwitchFolder(username){
     var userContainer = document.getElementById("userFilesContainer");
     var sharedContainer = document.getElementById("sharedFilesContainer"); 

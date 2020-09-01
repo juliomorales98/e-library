@@ -4,7 +4,7 @@ if($_SESSION["loggedin"] === true){
     header("location:index.php");
     exit;
 }
-require("./config.php");
+require("./php/config.php");
 
 $username = $password = "";
 
