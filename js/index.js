@@ -72,6 +72,21 @@ function DeleteFile(){
         }); 
     }
 }
+function ShareFile(){
+    let fileName = document.getElementById("fileNameHidden").value.toString();
+    let fileOwner = document.getElementById("fileOwnerHidden").value.toString();
+    let formData = new FormData();
+    formData.append('filename',fileName);
+    formData.append('owner',fileOwner);
+    fetch('../php/share.php',{
+        method: 'POST',
+        body: formData,
+    }).then((response)=>{
+        console.log(response);
+        alert(fileName + " shared!");
+        location.reload();
+    }); 
+}
 function SwitchFolder(username){
     var userContainer = document.getElementById("userFilesContainer");
     var sharedContainer = document.getElementById("sharedFilesContainer"); 

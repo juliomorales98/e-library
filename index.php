@@ -84,7 +84,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <input type="hidden" name="ownerGet" id="ownerHidden" >
                 <input type="submit" id="openButton" value="Open">
             </form>
-            <input type="button" value="Share">
+            <input type="button" value="Share" onclick="ShareFile();">
             <a id="downloadButton" href="#" download><input type="button" value="Download" ></a>
             <input type="button" value="Delete" onclick="DeleteFile();">
             
