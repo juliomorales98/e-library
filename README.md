@@ -8,7 +8,9 @@ This is a project to have a site where you can access, upload and share e-books 
 ### Shared folder
 ![Screenshot](https://github.com/juliomorales98/e-library/blob/master/screenshot_shared.png?raw=true)
 
-## Prerequisites:
-PHP 7.4.3 (cli)
-Mysql server
+## Requirements:
+PHP 7
+MySQL DB
 
+### Little note:
+I know css is garbage, maybe later I will update it.
